@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 4, 2021 4:52:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Faculty" table="faculty" catalog="mastersfinder" optimistic-lock="version">
+        <id name="facid" type="string">
+            <column name="facid" length="15" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="distric" class="POJOS.Distric" fetch="select">
+            <column name="disid" length="15" not-null="true" />
+        </many-to-one>
+        <many-to-one name="university" class="POJOS.University" fetch="select">
+            <column name="unid" length="15" not-null="true" />
+        </many-to-one>
+        <property name="facname" type="string">
+            <column name="facname" length="45" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <set name="coursedetailses" table="coursedetails" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="facid" length="15" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Coursedetails" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 4, 2021 4:52:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.University" table="university" catalog="mastersfinder" optimistic-lock="version">
+        <id name="unid" type="string">
+            <column name="unid" length="15" />
+            <generator class="assigned" />
+        </id>
+        <property name="uniname" type="string">
+            <column name="uniname" length="45" />
+        </property>
+        <property name="ranklocal" type="string">
+            <column name="ranklocal" length="45" />
+        </property>
+        <property name="rankworld" type="string">
+            <column name="rankworld" length="45" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="65535" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <set name="faculties" table="faculty" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="unid" length="15" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Faculty" />
+        </set>
+    </class>
+</hibernate-mapping>

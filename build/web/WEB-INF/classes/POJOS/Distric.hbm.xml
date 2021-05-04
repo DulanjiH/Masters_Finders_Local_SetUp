@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 4, 2021 4:52:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOS.Distric" table="distric" catalog="mastersfinder" optimistic-lock="version">
+        <id name="disid" type="string">
+            <column name="disid" length="15" />
+            <generator class="assigned" />
+        </id>
+        <property name="disname" type="string">
+            <column name="disname" length="45" />
+        </property>
+        <set name="faculties" table="faculty" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="disid" length="15" not-null="true" />
+            </key>
+            <one-to-many class="POJOS.Faculty" />
+        </set>
+    </class>
+</hibernate-mapping>
